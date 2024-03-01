@@ -2,16 +2,26 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-use Illuminate\Foundation\Bus\DispatchesJobs;
-use Illuminate\Foundation\Validation\ValidatesRequests;
+use Illuminate\Database\Connection;
 use Illuminate\Routing\Controller as BaseController;
+use Illuminate\Support\Facades\DB;
 
 class CuentasController extends BaseController
 {
+    private Connection $dbLector;
+    private Connection $dbEscritor;
+    public function __construct()
+    {
+        $this->dbLector = DB::connection('mysql.lector');
+        $this->dbEscritor = DB::connection('mysql.escritor');
+    }
+
 	public function listado()
 	{
-			echo 'hola';
+        $cuentas = $this->dbLector->table('cuenta')
+            ->get();
+
+        return view('cuenta.listado', compact('cuentas'));
 	}
 
 }

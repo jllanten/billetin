@@ -1,0 +1,22 @@
+
+/* Centra en pantalla */
+.center-screen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 100vh;
+    border: 2px solid black;
+}
+
+
+.a-boton {
+    color: #fff;
+    background: #FF0066;
+    padding: 0.5rem 1rem;
+    display: inline-block;
+    border-radius: 4px;
+    transition-duration: .25s;
+    border: none;
+    font-size: 14px;
+}
