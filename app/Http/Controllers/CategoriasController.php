@@ -12,6 +12,17 @@ class CategoriasController extends BaseController
     {
     }
 
+    public function ver(Request $request)
+    {
+        $categoria = $this->modeloCategoria->busquedaPorId((int)$request->route()->parameter('id'));
+
+        if (empty($categoria)) {
+            return respuestaError('CategoriaNoExiste');
+        }
+
+        return respuestaOk(['nombre' => $categoria['nombre']]);
+    }
+
 	public function listado()
 	{
         $categorias = $this->modeloCategoria->listado();
@@ -27,7 +38,7 @@ class CategoriasController extends BaseController
     {
         $nombre = $request->get('nombre');
 
-        $busqueda = $this->modeloCategoria->busqueda($nombre);
+        $busqueda = $this->modeloCategoria->busquedaPorNombre($nombre);
         if (!empty($busqueda)) {
             return respuestaError('CategoriaYaExiste');
         }
@@ -35,5 +46,15 @@ class CategoriasController extends BaseController
         $id = $this->modeloCategoria->insertar($nombre);
 
         return respuestaOk(['id' => $id]);
+    }
+
+    public function editar(Request $request)
+    {
+        $this->modeloCategoria->editar(
+            (int)$request->get('id'),
+            $request->get('nombre')
+        );
+
+        return respuestaOk();
     }
 }

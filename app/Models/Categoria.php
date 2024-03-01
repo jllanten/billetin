@@ -8,7 +8,7 @@ class Categoria
 {
     private const TABLA = 'categoria';
 
-    public function busqueda(string $nombre): array
+    public function busquedaPorNombre(string $nombre): array
     {
         $busqueda = DB::table(self::TABLA)
             ->where('nombre', '=', strtolower($nombre))
@@ -18,9 +18,21 @@ class Categoria
         return $busqueda ?? [];
     }
 
+    public function busquedaPorId(int $id): array
+    {
+        $busqueda = DB::table(self::TABLA)
+            ->where('categoria_id', '=', $id)
+            ->first();
+        $busqueda = (array) $busqueda;
+
+        return empty($busqueda) ? [] : $busqueda;
+    }
+
     public function listado(): array
     {
-        return DB::table(self::TABLA)->get()->toArray();
+        return DB::table(self::TABLA)
+            ->get()
+            ->toArray();
     }
 
     public function insertar(string $nombre): int
@@ -29,5 +41,12 @@ class Categoria
             ->insert(['nombre' => $nombre]);
 
         return DB::getPdo()->lastInsertId();
+    }
+
+    public function editar(int $id, string $nombre): void
+    {
+        DB::table(self::TABLA)
+            ->where('categoria_id', '=', $id)
+            ->update(['nombre' => $nombre]);
     }
 }

@@ -13,5 +13,7 @@ Route::get('/', [IndexController::class, 'index'])->name('index');
 Route::get('/cuentas/', [CuentasController::class, 'listado'])->name('cuentas.listado');
 
 Route::get('/categorias/', [CategoriasController::class, 'listado'])->name('categorias.listado');
+Route::get('/categorias/{id}/', [CategoriasController::class, 'ver'])->name('categorias.ver');
 Route::post('/categorias/agregar', [CategoriasController::class, 'agregar'])->name('categorias.agregar');
+Route::post('/categorias/editar', [CategoriasController::class, 'editar'])->name('categorias.editar');
 

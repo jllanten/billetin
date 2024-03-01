@@ -18,6 +18,7 @@
 
     <button id="btnAgregar">Agregar categoria</button>
     @include('categoria.agregar')
+    @include('categoria.editar')
 
     @push('scripts')
         <script>
@@ -27,6 +28,9 @@
                 $('#btnAgregar').on('click', function() {
                     dlgAgregarCategoria.dialog('open');
                 });
+
+                var dlgEditarCategoria = $('#editar-categoria');
+                dlgEditarCategoria.dialog({autoOpen: false});
 
                 cargarCategorias();
             });
