@@ -43,7 +43,7 @@ class CategoriasController extends BaseController
             return respuestaError('CategoriaYaExiste');
         }
 
-        $id = $this->modeloCategoria->insertar($nombre);
+        $id = $this->modeloCategoria->insertar(['nombre' => $nombre]);
 
         return respuestaOk(['id' => $id]);
     }
@@ -52,7 +52,7 @@ class CategoriasController extends BaseController
     {
         $this->modeloCategoria->editar(
             (int)$request->get('id'),
-            $request->get('nombre')
+            ['nombre' => $request->get('nombre')]
         );
 
         return respuestaOk();

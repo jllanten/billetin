@@ -7,6 +7,8 @@
                     <td><input type="text" id="nombre" /></td>
                 </tr>
 
+                <tr><td colspan="2">&nbsp;</td></tr>
+
                 <tr>
                     <td><input class="btn btn-primary" type="button" id="btnAgregarCategoria" value="Agregar" /></td>
                     <td><input class="btn btn-primary" type="button" id="btnCancelar" value="Cancelar" /></td>

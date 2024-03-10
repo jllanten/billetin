@@ -7,11 +7,6 @@
         <br />
         <table>
             <tbody id="categorias">
-{{--                @foreach($categorias as $categoria)--}}
-{{--                    <tr>--}}
-{{--                        <td><b>{{ $categoria->nombre }}</b></td>--}}
-{{--                    </tr>--}}
-{{--                @endforeach--}}
             </tbody>
         </table>
     </div>
