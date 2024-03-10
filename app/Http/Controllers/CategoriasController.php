@@ -23,8 +23,8 @@ class CategoriasController extends BaseController
         return respuestaOk(['nombre' => $categoria['nombre']]);
     }
 
-	public function listado()
-	{
+    public function listado()
+    {
         $categorias = $this->modeloCategoria->listado();
 
         if (request()->ajax()) {
@@ -32,7 +32,7 @@ class CategoriasController extends BaseController
         }
 
         return view('categoria.listado', compact('categorias'));
-	}
+    }
 
     public function agregar(Request $request)
     {
@@ -54,6 +54,18 @@ class CategoriasController extends BaseController
             (int)$request->get('id'),
             $request->get('nombre')
         );
+
+        return respuestaOk();
+    }
+
+    public function borrar(Request $request)
+    {
+        $categoriaId = (int)$request->get('id');
+        if ($this->modeloCategoria->estaSiendoUsado($categoriaId)) {
+            return respuestaError('CategoriaNoExiste');
+        }
+
+        $this->modeloCategoria->borrar($categoriaId);
 
         return respuestaOk();
     }

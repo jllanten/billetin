@@ -4,9 +4,9 @@ namespace App\Models;
 
 use Illuminate\Support\Facades\DB;
 
-class Categoria
+class Gasto
 {
-    private const TABLA = 'categoria';
+    private const TABLA = 'gasto';
 
     public function busquedaPorNombre(string $nombre): array
     {
@@ -21,7 +21,7 @@ class Categoria
     public function busquedaPorId(int $id): array
     {
         $busqueda = DB::table(self::TABLA)
-            ->where('categoria_id', '=', $id)
+            ->where('gasto_id', '=', $id)
             ->first();
         $busqueda = (array) $busqueda;
 
@@ -46,23 +46,15 @@ class Categoria
     public function editar(int $id, string $nombre): void
     {
         DB::table(self::TABLA)
-            ->where('categoria_id', '=', $id)
+            ->where('gasto_id', '=', $id)
             ->update(['nombre' => $nombre]);
     }
 
-    public function estaSiendoUsado(int $categoriaId): bool
+    public function buscarPorCategoria(int $categoriaId): ?array
     {
-        // Si tiene al menos un gasto
-        /** @var Gasto $modeloGasto */
-        $modeloGasto = app(Gasto::class);
-
-        return !empty ($modeloGasto->buscarPorCategoria($categoriaId));
-    }
-
-    public function borrar(int $id): void
-    {
-        DB::table(self::TABLA)
-            ->where('categoria_id', '=', $id)
-            ->delete();
+        return DB::table(self::TABLA)
+            ->where('categoria_id', '=', $categoriaId)
+            ->get()
+            ->toArray();
     }
 }

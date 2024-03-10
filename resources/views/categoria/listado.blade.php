@@ -30,7 +30,7 @@
                 });
 
                 var dlgEditarCategoria = $('#editar-categoria');
-                dlgEditarCategoria.dialog({autoOpen: false});
+                dlgEditarCategoria.dialog({autoOpen: false, width: 400});
 
                 cargarCategorias();
             });

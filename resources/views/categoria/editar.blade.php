@@ -1,6 +1,6 @@
 <div id="editar-categoria" title="Categoria: ">
     <div class="row">
-        <div class="col-lg-3">
+        <div class="col-lg-8 mb-4">
             <table>
                 <tr>
                     <td><label for="nombre-editar">NOMBRE</label></td>
@@ -10,8 +10,11 @@
                     </td>
                 </tr>
 
+                <tr><td colspan="2">&nbsp;</td></tr>
+
                 <tr>
                     <td><input class="btn btn-primary" type="button" id="btnEditarCategoria" value="Editar" /></td>
+                    <td><input class="btn btn-primary" type="button" id="btnBorrar" value="Borrar" /></td>
                     <td><input class="btn btn-primary" type="button" id="btnCerrar" value="Cerrar" /></td>
                 </tr>
             </table>
@@ -37,7 +40,24 @@
                 function (response) {
                     $.notify(response.mensaje, 'error');
                 }
-            )
+            );
+        });
+
+        $('#btnBorrar').on('click', function() {
+            post(
+                '{{ route('categorias.borrar') }}',
+                {
+                    id: $('#id-editar').val()
+                },
+                function (response) {
+                    $('#editar-categoria').dialog('close');
+                    cargarCategorias();
+                    $.notify('Categoria borrada exitosamente', 'success');
+                },
+                function (response) {
+                    $.notify(response.mensaje, 'error');
+                }
+            );
         });
 
         $('#btnCerrar').on('click', function() {
