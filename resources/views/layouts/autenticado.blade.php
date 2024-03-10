@@ -18,8 +18,18 @@
 
         {{-- https://notifyjs.jpillora.com/ --}}
         <script src="/js/notify.min.js"></script>
+        <script src="/js/loadingoverlay.min.js"></script>
 
         @stack('scripts')
+
+        <script>
+            $(document).ajaxStart(function(){
+                $.LoadingOverlay("show");
+            });
+            $(document).ajaxStop(function(){
+                $.LoadingOverlay("hide");
+            });
+        </script>
     </head>
 
     <body>

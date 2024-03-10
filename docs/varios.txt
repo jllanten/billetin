@@ -1,0 +1,36 @@
+Pagina de Categorias: falta borrado
+    Verificar si se puede borrar  (si esta siendo usado)
+
+
+PENDIENTE
+Pagina de gastos                /gastos/
+    Identico a categorias pero hay que elegir categoria
+        Nombre
+        Categoria
+
+
+Crear un selector de año en presupuesto y cajas
+
+REDIRECT
+/caja -> /caja/{año}/presupuesto
+
+Pagina de presupuesto           /presupuesto/{año}
+    Crear listado por mes/dia descendiente
+
+Flujo de caja
+    PLANEACION                     /caja/{año}/planeacion
+        Crear listado por mes/dia descendiente
+        Cada dia tiene un + para agregar gasto
+        Cada fila tiene un selector que en click se muesta y en ENTER ejecuta lo mismo que hacer click en +
+        En doble click intenta agregar PLANEACION-GASTO
+        Cada dialogo permite borrar un gasto
+
+        Graba en flujo_planeacion
+
+    REAL                           /caja/{año}/real
+        Crear listado por mes/dia descendiente
+        En doble click intenta agregar REAL-GASTO
+        Cada dia tiene un + para agregar gasto
+        Cada fila tiene un selector que en click se muesta y en ENTER ejecuta lo mismo que hacer click en +
+
+        Graba en flujo_real
